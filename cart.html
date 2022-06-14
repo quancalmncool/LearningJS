@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <button onclick = "get('apple')">Apple</button>
+    <input id = "apple" type = "number" value = "0" step = "1" /> <br>
+    <button onclick = "get('orange')">Orange</button>
+    <input id = "orange" type = "number" value = "0" step = "1"/> <br>
+    <button onclick = "get('grave')">Grave</button>
+    <input id = "grave" type = "number" value = "0" step = "1"/> <br>
+    <button onclick = "lozz()">Clear</button>
+    <br>
+    <button onclick = "getbill()">Get Bill</button>
+    <div id = "bill"></div>
+    <br>
+    <script>
+      //ham tang so luong qua
+      function get(food) {
+        let a = document.getElementById(food).value;
+        a = parseInt(a) + 1;
+        document.getElementById(food).value = a;
+      };
+      // ham tinh hoa don
+      function getbill(){
+        let a = document.getElementById('apple').value;
+        let o = document.getElementById('orange').value;
+        let g = document.getElementById('grave').value;
+        let total = 0;
+        total = a*4 + o*7 + g*10;
+        let foods = [{name: 'Apple', price: 4, quantity: a}, 
+                      {name: 'Orange', price: 7, quantity: o},
+                      {name: 'Grave', price: 10, quantity: g}];
+        let bill = document.getElementById("bill");
+        bill.innerHTML = '';
+        foods.forEach(function (item) {
+          let div = document.createElement("div");
+          div.innerText = item.name + ': $' + item.price + '*' + item.quantity + ' = ' + item.price*item.quantity + '$';
+          bill.appendChild(div); 
+        })
+        let div = document.createElement("div");
+        div.innerText = 'Total Price: ' + total + '$';
+        bill.appendChild(div);
+      };
+      // ham reset
+      function lozz(){
+        let bill = document.getElementById("bill");
+        bill.innerHTML = '';
+        document.getElementById('apple').value = 0;
+        document.getElementById('orange').value = 0;
+        document.getElementById('grave').value = 0;
+      };
+    </script>
+</body>
+</html>
